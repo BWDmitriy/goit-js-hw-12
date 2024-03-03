@@ -2,10 +2,9 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-import {
-  galleryList
-} from "../main";
-export function renderImages(data) {
+import axios from 'axios';
+import { galleryList } from '../main';
+export async function renderImages(data) {
   galleryList.innerHTML = '';
   console.log(data);
   const images = data.hits;
