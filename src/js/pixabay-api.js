@@ -1,4 +1,4 @@
-import { galleryList } from '../main';
+import { galleryList, totalPages } from '../main';
 import { query } from '../main';
 import axios from 'axios';
 import { limit } from '../main';
@@ -10,12 +10,12 @@ export async function fetchImages(query) {
   const myApiKey = '42609290-856768105ab9e79485c69bf61';
   // axios.defaults.headers.common['header-name'] = myApiKey;
   const params = new URLSearchParams({
-    _limit: limit,
+    _per_page: limit,
     _page: page,
     key: myApiKey,
     image_type: 'photo',
     orientation: 'horizontal',
-    safesearch: 'true',
+    safesearch: 'false',
   });
   const response = await axios.get(
     `https://pixabay.com/api/?${params}&q=${query}`

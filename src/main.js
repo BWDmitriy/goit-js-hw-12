@@ -13,7 +13,7 @@ export let page = 1;
 // Controls the number of items in the group
 export let limit = 15;
 // In our case total number of pages is calculated on frontend
-const totalPages = Math.ceil(100 / limit);
+export let totalPages = Math.ceil(limit / limit);
 
 inputQuery.addEventListener('input', e => {
   query = inputQuery.value.trim();
@@ -22,8 +22,31 @@ inputQuery.addEventListener('input', e => {
 });
 
 const searchButton = document.getElementById('search-button');
+const loadButton = document.getElementById('load-button');
 searchButton.addEventListener('click', async () => {
   galleryList.innerHTML = '<div class="loader"></div>';
+  loadButton.classList = '';
+  page = 1;
+  try {
+    if (query) {
+      const posts = await fetchImages(query);
+      totalPages = Math.ceil(posts.totalHits / limit);
+      renderImages(posts);
+      page += 1;
+    }
+  } catch (error) {
+    console.log(error);
+    iziToast.error({
+      title: 'Error',
+      message: `Виникла помилка під час завантаження зображень. Будь ласка, спробуйте пізніше.`,
+      position: 'topRight',
+    });
+  }
+});
+
+loadButton.addEventListener('click', async () => {
+  // galleryList.insertAdjacentHTML('afterend', '<div class="loader"></div>');
+
   if (page > totalPages) {
     return iziToast.error({
       position: 'topRight',
@@ -32,13 +55,10 @@ searchButton.addEventListener('click', async () => {
   }
   try {
     if (query) {
-      const posts = await fetchImages();
-      fetchImages(posts);
+      const posts = await fetchImages(query);
+      renderImages(posts);
       // Increase the group number
       page += 1;
-      if (page > 1) {
-        searchButton.textContent = 'Fetch more posts';
-      }
     }
   } catch (error) {
     console.log(error);

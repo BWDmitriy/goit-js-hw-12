@@ -2,7 +2,7 @@
 
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
@@ -64,7 +64,29 @@
 #search-button:hover {
   background: #6c8cff;
 }
-
+#load-button {
+  border-radius: 8px;
+  padding: 8px 16px;
+  width: 125px;
+  height: 40px;
+  background: #4e75ff;
+  margin-left: auto;
+}
+#load-button:hover {
+  background: #6c8cff;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
 .gallery {
   display: flex;
   gap: 24px;
@@ -83,10 +105,9 @@ img {
   height: 100%;
 }
 .gallery-description {
-  display:flex;
+  display: flex;
   padding: 4px;
   justify-content: space-evenly;
-  
 }
 .gallery-description > li {
   display: flex;
@@ -94,42 +115,41 @@ img {
   text-align: center;
 }
 .gallery-description h3 {
-font-weight: 600;
-font-size: 12px;
-line-height: 133%;
-letter-spacing: 0.04em;
-color: #2e2f42;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 133%;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
 }
 .gallery-description p {
-text-align: center;
-font-weight: 400;
-font-size: 12px;
-line-height: 200%;
-letter-spacing: 0.04em;
-color: #2e2f42;
+  text-align: center;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 200%;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
 }
 .gallery-image {
   height: 152px;
 }
 
 .loader {
-    width: 48px;
-    height: 48px;
-    border: 5px solid #FFF;
-    border-bottom-color: #FF3D00;
-    border-radius: 50%;
-    display: inline-block;
-    box-sizing: border-box;
-    animation: rotation 1s linear infinite;
-    margin: 0 auto;
-    }
+  width: 48px;
+  height: 48px;
+  border: 5px solid #fff;
+  border-bottom-color: #ff3d00;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+  margin: 0 auto;
+}
 
-    @keyframes rotation {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-    } 
-    
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
