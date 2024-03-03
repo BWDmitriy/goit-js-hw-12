@@ -12,13 +12,13 @@ export async function fetchImages(query) {
   const params = new URLSearchParams({
     _limit: limit,
     _page: page,
-    _key: myApiKey,
-    _image_type: 'photo',
-    _orientation: 'horizontal',
-    _safesearch: 'true',
+    key: myApiKey,
+    image_type: 'photo',
+    orientation: 'horizontal',
+    safesearch: 'true',
   });
   const response = await axios.get(
-    `https://pixabay.com/api/posts?${params}&q=${query}`
+    `https://pixabay.com/api/?${params}&q=${query}`
   );
   return response.data;
 }

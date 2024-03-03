@@ -32,7 +32,7 @@ searchButton.addEventListener('click', async () => {
   }
   try {
     if (query) {
-      const posts = await fetchImages(query);
+      const posts = await fetchImages();
       fetchImages(posts);
       // Increase the group number
       page += 1;
