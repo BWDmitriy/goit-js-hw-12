@@ -15,7 +15,7 @@ export async function fetchImages(query) {
     key: myApiKey,
     image_type: 'photo',
     orientation: 'horizontal',
-    safesearch: 'false',
+    safesearch: 'true',
   });
   const response = await axios.get(
     `https://pixabay.com/api/?${params}&q=${query}`
