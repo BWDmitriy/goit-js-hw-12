@@ -18,7 +18,7 @@ export let totalPages = Math.ceil(limit / limit);
 inputQuery.addEventListener('input', e => {
   query = inputQuery.value.trim();
 
-  // galleryList.innerHTML = '';
+  galleryList.innerHTML = '';
 });
 
 const searchButton = document.getElementById('search-button');
