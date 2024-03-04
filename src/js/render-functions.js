@@ -17,7 +17,7 @@ export async function renderImages(data) {
       'loader visually-hidden';
     iziToast.error({
       title: 'Error',
-      message: `Error: No such pictures!`,
+      message: `No such pictures`,
       position: 'topRight',
     });
   }

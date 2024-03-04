@@ -34,7 +34,7 @@ searchButton.addEventListener('click', async () => {
       loadButton.className = '';
       // loader.className = 'loader visually-hidden';
       const posts = await fetchImages(query);
-      totalPages = Math.ceil(posts.totalHits / limit);
+      // totalPages = Math.ceil(posts.totalHits / limit);
       renderImages(posts);
       page += 1;
       // limit = 30;
@@ -59,6 +59,14 @@ loadButton.addEventListener('click', async () => {
       const posts = await fetchImages(query);
       totalPages = Math.ceil(posts.totalHits / limit);
       renderImages(posts);
+      if (document.querySelectorAll('.gallery-item').length > posts.totalHits) {
+        loadButton.className = 'visually-hidden';
+        return iziToast.error({
+          title: 'Error',
+          message: `We're sorry, but you've reached the end of search results.`,
+          position: 'topRight',
+        });
+      }
       page += 1;
       // limit = 15 * page;
       const rect = loadButton.getBoundingClientRect();
