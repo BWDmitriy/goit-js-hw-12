@@ -25,14 +25,16 @@ const searchButton = document.getElementById('search-button');
 const loadButton = document.getElementById('load-button');
 searchButton.addEventListener('click', async () => {
   galleryList.innerHTML = '<div class="loader"></div>';
-  loadButton.classList = '';
   page = 1;
+  limit = 15;
   try {
     if (query) {
+      loadButton.classList = '';
       const posts = await fetchImages(query);
       totalPages = Math.ceil(posts.totalHits / limit);
       renderImages(posts);
       page += 1;
+      limit = 30;
     }
   } catch (error) {
     console.log(error);
@@ -45,20 +47,16 @@ searchButton.addEventListener('click', async () => {
 });
 
 loadButton.addEventListener('click', async () => {
-  // galleryList.insertAdjacentHTML('afterend', '<div class="loader"></div>');
-
-  if (page > totalPages) {
-    return iziToast.error({
-      position: 'topRight',
-      message: "We're sorry, there are no more posts to load",
-    });
-  }
+  galleryList.innerHTML = '<div class="loader"></div>';
   try {
     if (query) {
       const posts = await fetchImages(query);
+      totalPages = Math.ceil(posts.totalHits / limit);
       renderImages(posts);
-      // Increase the group number
       page += 1;
+      limit = 15 * page;
+      const rect = loadButton.getBoundingClientRect();
+      scrollBy(rect.x, rect.y);
     }
   } catch (error) {
     console.log(error);

@@ -70,7 +70,8 @@
   width: 125px;
   height: 40px;
   background: #4e75ff;
-  margin-left: auto;
+  margin: 0 auto;
+  display: block;
 }
 #load-button:hover {
   background: #6c8cff;

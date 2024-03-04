@@ -10,8 +10,8 @@ export async function fetchImages(query) {
   const myApiKey = '42609290-856768105ab9e79485c69bf61';
   // axios.defaults.headers.common['header-name'] = myApiKey;
   const params = new URLSearchParams({
-    _per_page: limit,
-    _page: page,
+    per_page: limit,
+    page: page,
     key: myApiKey,
     image_type: 'photo',
     orientation: 'horizontal',
