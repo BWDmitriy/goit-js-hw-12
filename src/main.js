@@ -33,9 +33,11 @@ searchButton.addEventListener('click', async () => {
     if (query) {
       loadButton.className = '';
       // loader.className = 'loader visually-hidden';
+
       const posts = await fetchImages(query);
       // totalPages = Math.ceil(posts.totalHits / limit);
       renderImages(posts);
+      loader.className = 'loader visually-hidden';
       page += 1;
       // limit = 30;
     }
@@ -55,10 +57,7 @@ loadButton.addEventListener('click', async () => {
   loader.className = 'loader';
   try {
     if (query) {
-      loader.className = 'loader visually-hidden';
       const posts = await fetchImages(query);
-      totalPages = Math.ceil(posts.totalHits / limit);
-      renderImages(posts);
       if (document.querySelectorAll('.gallery-item').length > posts.totalHits) {
         loadButton.className = 'visually-hidden';
         return iziToast.error({
@@ -67,6 +66,10 @@ loadButton.addEventListener('click', async () => {
           position: 'topRight',
         });
       }
+      totalPages = Math.ceil(posts.totalHits / limit);
+
+      renderImages(posts);
+      loader.className = 'loader visually-hidden';
       page += 1;
       // limit = 15 * page;
       const rect = loadButton.getBoundingClientRect();
