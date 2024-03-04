@@ -6,7 +6,7 @@ import { page } from '../main';
 
 export async function fetchImages(query) {
   query = encodeURIComponent(query);
-  galleryList.innerHTML = `<div class="loader"></div>`;
+  // galleryList.innerHTML = `<div class="loader"></div>`;
   const myApiKey = '42609290-856768105ab9e79485c69bf61';
   // axios.defaults.headers.common['header-name'] = myApiKey;
   const params = new URLSearchParams({

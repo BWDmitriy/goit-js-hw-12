@@ -4,13 +4,17 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import axios from 'axios';
 import { galleryList } from '../main';
+import { loadButton } from '../main';
 // import { limit } from '../main';
 // import { totalPages } from '../main';
 export async function renderImages(data) {
-  galleryList.innerHTML = '';
+  // galleryList.innerHTML = '';
   console.log(data);
   const images = data.hits;
   if (images.length == 0) {
+    loadButton.className = 'visually-hidden';
+    document.getElementsByClassName('loader')[0].className =
+      'loader visually-hidden';
     iziToast.error({
       title: 'Error',
       message: `Error: No such pictures!`,

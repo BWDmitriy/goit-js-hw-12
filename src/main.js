@@ -18,25 +18,29 @@ export let totalPages = Math.ceil(limit / limit);
 inputQuery.addEventListener('input', e => {
   query = inputQuery.value.trim();
 
-  galleryList.innerHTML = '';
+  // galleryList.innerHTML = '';
 });
 
 const searchButton = document.getElementById('search-button');
-const loadButton = document.getElementById('load-button');
+export const loadButton = document.getElementById('load-button');
+export const loaderDiv = document.getElementById('loader');
 searchButton.addEventListener('click', async () => {
-  galleryList.innerHTML = '<div class="loader"></div>';
+  galleryList.innerHTML = '';
+  loader.className = 'loader';
   page = 1;
   limit = 15;
   try {
     if (query) {
-      loadButton.classList = '';
+      loadButton.className = '';
+      // loader.className = 'loader visually-hidden';
       const posts = await fetchImages(query);
       totalPages = Math.ceil(posts.totalHits / limit);
       renderImages(posts);
       page += 1;
-      limit = 30;
+      // limit = 30;
     }
   } catch (error) {
+    loadButton.className = 'visually-hidden';
     console.log(error);
     iziToast.error({
       title: 'Error',
@@ -47,14 +51,16 @@ searchButton.addEventListener('click', async () => {
 });
 
 loadButton.addEventListener('click', async () => {
-  galleryList.innerHTML = '<div class="loader"></div>';
+  // galleryList.innerHTML = '<div class="loader"></div>';
+  loader.className = 'loader';
   try {
     if (query) {
+      loader.className = 'loader visually-hidden';
       const posts = await fetchImages(query);
       totalPages = Math.ceil(posts.totalHits / limit);
       renderImages(posts);
       page += 1;
-      limit = 15 * page;
+      // limit = 15 * page;
       const rect = loadButton.getBoundingClientRect();
       scrollBy(rect.x, rect.y);
     }
