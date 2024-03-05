@@ -19,6 +19,7 @@ inputQuery.addEventListener('input', e => {
   query = inputQuery.value.trim();
 
   galleryList.innerHTML = '';
+  loadButton.className = 'visually-hidden';
 });
 
 const searchButton = document.getElementById('search-button');
