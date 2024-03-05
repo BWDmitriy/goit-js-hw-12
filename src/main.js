@@ -14,17 +14,18 @@ export let page = 1;
 export let limit = 15;
 // In our case total number of pages is calculated on frontend
 export let totalPages = Math.ceil(limit / limit);
-
+export const loadButton = document.getElementById('load-button');
+export const loaderDiv = document.getElementById('loader');
 inputQuery.addEventListener('input', e => {
   query = inputQuery.value.trim();
 
   galleryList.innerHTML = '';
   loadButton.className = 'visually-hidden';
+  loader.className = 'visually-hidden';
 });
 
 const searchButton = document.getElementById('search-button');
-export const loadButton = document.getElementById('load-button');
-export const loaderDiv = document.getElementById('loader');
+
 searchButton.addEventListener('click', async () => {
   galleryList.innerHTML = '';
   loader.className = 'loader';
@@ -54,25 +55,24 @@ searchButton.addEventListener('click', async () => {
 });
 
 loadButton.addEventListener('click', async () => {
-  // galleryList.innerHTML = '<div class="loader"></div>';
   loader.className = 'loader';
   try {
     if (query) {
       const posts = await fetchImages(query);
-      if (document.querySelectorAll('.gallery-item').length > posts.totalHits) {
+      const totalItems = posts.totalHits;
+      const currentPageItems =
+        document.querySelectorAll('.gallery-item').length;
+      if (currentPageItems >= totalItems) {
         loadButton.className = 'visually-hidden';
+        loader.className = 'visually-hidden';
         return iziToast.error({
           title: 'Error',
           message: `We're sorry, but you've reached the end of search results.`,
           position: 'topRight',
         });
       }
-      totalPages = Math.ceil(posts.totalHits / limit);
-
       renderImages(posts);
       loader.className = 'loader visually-hidden';
-      page += 1;
-      // limit = 15 * page;
       const rect = loadButton.getBoundingClientRect();
       scrollBy(rect.x, rect.y);
     }
