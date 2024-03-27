@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { limit, page } from '../main';
-import { page } from '../main';
 
 export async function fetchImages(query) {
   query = encodeURIComponent(query);
