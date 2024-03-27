@@ -1,4 +1,3 @@
-import { galleryList, totalPages } from '../main';
 import { query } from '../main';
 import axios from 'axios';
 import { limit } from '../main';
