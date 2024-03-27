@@ -1,6 +1,5 @@
-import { query } from '../main';
 import axios from 'axios';
-import { limit } from '../main';
+import { limit, page } from '../main';
 import { page } from '../main';
 
 export async function fetchImages(query) {

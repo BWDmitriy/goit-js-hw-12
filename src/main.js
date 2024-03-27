@@ -1,8 +1,6 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-import axios from 'axios';
 import { fetchImages } from './js/pixabay-api';
 import { renderImages } from './js/render-functions';
 export const galleryList = document.querySelector('ul.gallery');
@@ -36,7 +34,6 @@ searchButton.addEventListener('click', async () => {
       renderImages(posts);
       loader.className = 'loader visually-hidden';
       page += 1;
-
     }
   } catch (error) {
     loadButton.className = 'visually-hidden';

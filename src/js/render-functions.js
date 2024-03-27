@@ -2,9 +2,7 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-import axios from 'axios';
-import { galleryList } from '../main';
-import { loadButton } from '../main';
+import { galleryList, loadButton } from '../main';
 
 export async function renderImages(data) {
   // galleryList.innerHTML = '';
@@ -47,7 +45,6 @@ export async function renderImages(data) {
     })
     .join('');
   galleryList.insertAdjacentHTML('beforeend', galleryMarkup);
-  // Initialize SimpleLightbox
   const galleryCfg = {
     captionsData: 'alt',
   };
