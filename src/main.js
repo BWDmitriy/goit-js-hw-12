@@ -28,8 +28,6 @@ searchButton.addEventListener('click', async () => {
   try {
     if (query) {
       loadButton.className = '';
-      // loader.className = 'loader visually-hidden';
-
       const posts = await fetchImages(query);
       renderImages(posts);
       loaderDiv.className = 'loader visually-hidden';
