@@ -15,14 +15,14 @@ inputQuery.addEventListener('input', e => {
 
   galleryList.innerHTML = '';
   loadButton.className = 'visually-hidden';
-  loader.className = 'visually-hidden';
+  loaderDiv.className = 'visually-hidden';
 });
 
 const searchButton = document.getElementById('search-button');
 
 searchButton.addEventListener('click', async () => {
   galleryList.innerHTML = '';
-  loader.className = 'loader';
+  loaderDiv.className = 'loader';
   page = 1;
   limit = 15;
   try {
@@ -32,7 +32,7 @@ searchButton.addEventListener('click', async () => {
 
       const posts = await fetchImages(query);
       renderImages(posts);
-      loader.className = 'loader visually-hidden';
+      loaderDiv.className = 'loader visually-hidden';
       page += 1;
     }
   } catch (error) {
@@ -47,7 +47,7 @@ searchButton.addEventListener('click', async () => {
 });
 
 loadButton.addEventListener('click', async () => {
-  loader.className = 'loader';
+  loaderDiv.className = 'loader';
   try {
     if (query) {
       const posts = await fetchImages(query);
@@ -56,7 +56,7 @@ loadButton.addEventListener('click', async () => {
         document.querySelectorAll('.gallery-item').length;
       if (currentPageItems >= totalItems) {
         loadButton.className = 'visually-hidden';
-        loader.className = 'visually-hidden';
+        loaderDiv.className = 'visually-hidden';
         return iziToast.error({
           title: 'Error',
           message: `We're sorry, but you've reached the end of search results.`,
@@ -64,9 +64,10 @@ loadButton.addEventListener('click', async () => {
         });
       }
       renderImages(posts);
-      loader.className = 'loader visually-hidden';
+      loaderDiv.className = 'loader visually-hidden';
       const rect = loadButton.getBoundingClientRect();
       scrollBy(rect.x, rect.y);
+      page += 1;
     }
   } catch (error) {
     console.log(error);
