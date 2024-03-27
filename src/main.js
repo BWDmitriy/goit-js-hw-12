@@ -8,11 +8,8 @@ import { renderImages } from './js/render-functions';
 export const galleryList = document.querySelector('ul.gallery');
 export let query = '';
 const inputQuery = document.getElementById('search-input');
-// Controls the group number
 export let page = 1;
-// Controls the number of items in the group
 export let limit = 15;
-// In our case total number of pages is calculated on frontend
 export let totalPages = Math.ceil(limit / limit);
 export const loadButton = document.getElementById('load-button');
 export const loaderDiv = document.getElementById('loader');
@@ -37,11 +34,10 @@ searchButton.addEventListener('click', async () => {
       // loader.className = 'loader visually-hidden';
 
       const posts = await fetchImages(query);
-      // totalPages = Math.ceil(posts.totalHits / limit);
       renderImages(posts);
       loader.className = 'loader visually-hidden';
       page += 1;
-      // limit = 30;
+
     }
   } catch (error) {
     loadButton.className = 'visually-hidden';
