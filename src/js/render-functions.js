@@ -5,8 +5,7 @@ import 'izitoast/dist/css/iziToast.min.css';
 import axios from 'axios';
 import { galleryList } from '../main';
 import { loadButton } from '../main';
-// import { limit } from '../main';
-// import { totalPages } from '../main';
+
 export async function renderImages(data) {
   // galleryList.innerHTML = '';
   console.log(data);
