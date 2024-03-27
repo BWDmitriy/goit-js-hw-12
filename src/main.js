@@ -10,7 +10,6 @@ export let query = '';
 const inputQuery = document.getElementById('search-input');
 export let page = 1;
 export let limit = 15;
-export let totalPages = Math.ceil(limit / limit);
 export const loadButton = document.getElementById('load-button');
 export const loaderDiv = document.getElementById('loader');
 inputQuery.addEventListener('input', e => {
